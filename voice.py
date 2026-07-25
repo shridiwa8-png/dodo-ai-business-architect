@@ -1,11 +1,11 @@
 import os
 import tempfile
 import streamlit as st
-from google import genai
+from groq import Groq
 
 def record_voice():
     """
-    Record voice and transcribe it using Gemini.
+    Record voice and transcribe it using Groq (Whisper).
     Returns the transcript as a string.
     """
 
@@ -20,36 +20,32 @@ def record_voice():
         return ""
 
     api_key = (
-        st.secrets.get("GEMINI_API_KEY")
-        or os.getenv("GEMINI_API_KEY")
+        st.secrets.get("GROQ_API_KEY")
+        or os.getenv("GROQ_API_KEY")
     )
 
     if not api_key:
-        st.error("Missing GEMINI_API_KEY")
+        st.error("Missing GROQ_API_KEY")
         return ""
 
     try:
-        client = genai.Client(api_key=api_key)
+        client = Groq(api_key=api_key)
 
         with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
             tmp.write(audio.getbuffer())
             audio_path = tmp.name
 
-        uploaded_audio = client.files.upload(
-            file=audio_path
-        )
-
-        response = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=[
-                uploaded_audio,
-                "Transcribe this audio exactly. Do not summarize."
-            ]
-        )
+        with open(audio_path, "rb") as file:
+            transcription = client.audio.transcriptions.create(
+                file=(audio_path, file.read()),
+                model="whisper-large-v3",
+                prompt="Transcribe this audio exactly. Do not summarize.",
+                response_format="json"
+            )
 
         os.remove(audio_path)
 
-        transcript = response.text.strip()
+        transcript = transcription.text.strip()
 
         st.success("✅ Voice transcribed successfully!")
 
