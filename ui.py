@@ -39,6 +39,14 @@ BUSINESS_TYPES = [
     "Ecommerce",
     "Local Service Business",
     "SaaS",
+    "Creator Business",
+    "Freelancer",
+    "Online Education",
+    "Restaurant/Food",
+    "Retail",
+    "Manufacturing",
+    "Healthcare",
+    "Real Estate",
     "Other"
 
 ]
@@ -49,7 +57,8 @@ TEAM_SIZES = [
     "Solo",
     "2-5 employees",
     "6-20 employees",
-    "20+ employees"
+    "20+ employees",
+    "50+ employees"
 
 ]
 
@@ -72,7 +81,12 @@ GOALS = [
     "Reduce Manual Work",
     "Build SOPs",
     "Scale Business",
-    "Improve Customer Support"
+    "Improve Customer Support",
+    "Improve Cash Flow",
+    "Reduce Costs",
+    "Launch Business",
+    "Improve Marketing",
+    "Improve Customer Retention"
 
 ]
 
@@ -119,9 +133,27 @@ TOOLS = [
     "Zapier",
     "Make.com",
     "ChatGPT",
-    "Gemini"
+    "Gemini",
+    "Website",
+    "Email",
+    "Social Media",
+    "Instagram",
+    "CRM",
+    "Other"
 
 ]
+
+
+BUSINESS_GOAL_TIMELINE = [ 
+
+    "Just Starting",
+    "Next 3 Months",
+    "6-12 Months",
+    "Long Term Growth"
+
+]
+
+     
 
 
 
@@ -198,6 +230,12 @@ def user_profile():
     profile["goals"] = st.multiselect(
         "Main Business Goals",
         GOALS
+    )
+
+
+    profile["goal_timeline"] = st.selectbox(
+        "Business Goal Timeline",
+        BUSINESS_GOAL_TIMELINE
     )
 
 
