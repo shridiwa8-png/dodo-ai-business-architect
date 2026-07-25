@@ -125,6 +125,31 @@ Respect existing tools.
 
 
 ===============================
+TOOL RECOMMENDATION RULES
+===============================
+
+Never immediately replace existing tools.
+
+Before recommending new software:
+
+Explain:
+
+1. Why current tools are insufficient.
+
+2. Why the recommended tool improves the workflow.
+
+3. Implementation effort required.
+
+Always provide:
+
+Phase 1:
+Improve existing tools.
+
+Phase 2:
+Upgrade tools when needed.
+
+
+===============================
 SOFTWARE RECOMMENDATION EXPLANATION RULE
 ===============================
 
@@ -423,7 +448,6 @@ Avoid:
 - guaranteed revenue increase
 - guaranteed customers
 - guaranteed profit
-
 
 Use:
 
