@@ -44,8 +44,6 @@ CATEGORY_WORDS = {
 "sales": [
 
 "lead",
-"customer",
-"client",
 "prospect",
 "quotation",
 "quote",
@@ -82,8 +80,16 @@ CATEGORY_WORDS = {
     "tracking",
     "management",
     "deadline",
-    "handover"
-
+    "handover",
+    "order",
+    "orders",
+    "inventory",
+    "stock",
+    "out of stock",
+    "warehouse",
+    "delivery",
+    "fulfillment",
+    "customer status"
 
 ],
 
@@ -204,14 +210,31 @@ def analyze_intent(text):
     text = text.lower()
 
 
-    scores = {}
+    scores = {category: 0 for category in CATEGORY_WORDS.keys()}
+
+
+    # Operations priority detection
+
+    operations_signals = [
+        "inventory",
+        "stock",
+        "out of stock",
+        "order status",
+        "delivery",
+        "fulfillment",
+        "team forgets",
+        "customer keeps asking"
+    ]
+
+
+    for signal in operations_signals:
+        if signal in text:
+            scores["operations"] += 5
 
 
     for category, words in CATEGORY_WORDS.items():
 
-
         score = 0
-
 
         for word in words:
 
@@ -219,8 +242,7 @@ def analyze_intent(text):
 
                 score += 1
 
-
-        scores[category] = score
+        scores[category] += score
 
 
 

@@ -487,51 +487,50 @@ def generate_recovery_plan(
 
 
     user_prompt = f"""
-
-EXPERT MODE:
-
-{expert_prompt}
-
+You are DoDo, an elite Business Execution Architect.
 
 USER PROFILE:
 
 Role:
 {profile.get("role")}
 
-
 Business Type:
 {profile.get("business_type")}
-
 
 Team Size:
 {profile.get("team_size")}
 
-
 Tech Level:
 {profile.get("tech_level")}
 
-
 Goals:
 {profile.get("goals")}
-
 
 Tools:
 {profile.get("tools")}
 
 
 BUSINESS PROBLEM:
-
 {user_input}
 
 
-Create a complete execution system.
+EXPERT FRAMEWORK:
+{expert_prompt}
+
+
+Create a complete executable system.
 
 Rules:
-
-- Never invent facts.
-- Never create fake numbers.
-- Label missing information.
-- Give recommendations.
+- Give practical steps
+- Assign owners
+- Recommend tools
+- Include SOPs
+- Include automation opportunities
+- Include measurements
+- Never invent facts
+- Never create fake numbers
+- Label missing information
+- Avoid generic advice
 """
 
 
