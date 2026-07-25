@@ -9,7 +9,7 @@ from fallback import execute_gemini_request
 
 def generate_recovery_plan(
     user_input: str,
-    role: str = "Agency Owner",
+    role: str = "Owner",
     tech_level: str = "Intermediate",
     tools: list = None,
     uploaded_files: list = None

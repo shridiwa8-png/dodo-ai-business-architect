@@ -9,7 +9,7 @@ import streamlit as st
 
 ROLES = [
 
-    "Agency Owner",
+    "Owner",
     "Freelancer",
     "Consultant",
     "Ecommerce Seller",
